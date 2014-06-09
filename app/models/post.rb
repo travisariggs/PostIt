@@ -5,4 +5,6 @@ class Post < ActiveRecord::Base
   # Could use the more explicit form for the relationship
   belongs_to :user, foreign_key: 'user_id', class_name: 'User'
   has_many :comments
+  has_many :post_categories
+  has_many :categories, through: :post_categories
 end
