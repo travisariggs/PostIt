@@ -1,4 +1,8 @@
 class Post < ActiveRecord::Base
-  belongs_to :user
+  # Simpler relationship declaration uses the standard naming
+  #  conventions to relate things together
+  #belongs_to :user
+  # Could use the more explicit form for the relationship
+  belongs_to :user, foreign_key: 'user_id', class_name: 'User'
   has_many :comments
 end
