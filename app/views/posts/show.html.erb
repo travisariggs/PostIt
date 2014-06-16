@@ -1,13 +1,8 @@
 <p>
-  <% @post.categories.each do |category| %>
-    <span class='badge'><%= category.name %></span>
-  <% end %>
+  <%= render @post.categories %>
 </p>
 
-<p class='lead'>
-  <%= link_to @post.title, 'http://' + @post.url %>
-  <hr/>
-</p>
+<%= render 'shared/content_title', title: link_to(@post.title, 'http://' + @post.url) %>
 
 <p>
   <%= @post.description %>
