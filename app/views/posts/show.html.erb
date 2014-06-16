@@ -1,16 +1,29 @@
-<h3><%= @post.title %></h3>
+<p>
+  <% @post.categories.each do |category| %>
+    <span class='badge'><%= category.name %></span>
+  <% end %>
+</p>
 
-<%= link_to 'Back', posts_path %>
+<p class='lead'>
+  <%= link_to @post.title, 'http://' + @post.url %>
+  <hr/>
+</p>
 
-<p><%= @post.id %></p>
-<p><%= link_to @post.url, 'http://' + @post.url %></p>
-<p><%= @post.description %></p>
-<p>Posted by <%= @post.user.username %> on <%= @post.created_at %></p>
+<p>
+  <%= @post.description %>
+</p>
+<hr/>
 
-<h5>Comments:</h5>
+<h4>Comments:</h4>
+
 <% @post.comments.each do |comment| %>
-  <div>
-    <%= comment.body %>
-    <%= comment.user.username %>
+  <div class='row'>
+    <div class='span8 well'>
+      <p>"<%= comment.body %>"</p>
+      <p>
+        <span class='quiet'>by</span> <%= comment.user.username %>
+        <small>at <%= comment.created_at %></small>
+      </p>
+    </div>
   </div>
 <% end %>
