@@ -1,28 +1,5 @@
-<h3>Create Post</h3>
+<%= render 'shared/content_title', title: 'Create Post' %>
 
-<% if @post.errors.any? %>
-  <div class="alert alert-error">
-    <h5>There were some errors:</h5>
-    <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'errors' %>
 
-<%= form_for @post do |f| %>
-   <%= f.label :title %>
-   <%= f.text_field :title %>
-   <br/>
-
-   <%= f.label :url %>
-   <%= f.text_field :url %>
-   <br/>
-
-   <%= f.label :description %>
-   <%= f.text_area :description %>
-   <br/>
-
-   <%= f.submit class: 'btn btn-primary' %> 
-<% end %>
+<%= render 'post_form' %>
