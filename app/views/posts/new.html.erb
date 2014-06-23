@@ -1,5 +1,16 @@
 <h3>Create Post</h3>
 
+<% if @post.errors.any? %>
+  <div class="alert alert-error">
+    <h5>There were some errors:</h5>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_for @post do |f| %>
    <%= f.label :title %>
    <%= f.text_field :title %>
