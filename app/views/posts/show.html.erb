@@ -1,6 +1,7 @@
 <p>
   <%= render @post.categories %>
 </p>
+<span class='pull-right'><%= link_to 'Edit this post', edit_post_path(@post) %></span>
 
 <%= render 'shared/content_title', title: link_to(@post.title, 'http://' + @post.url) %>
 
