@@ -1,15 +1,20 @@
-<%= form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <br/>
+<div class='well'>
+  <%= form_for @post do |f| %>
+    <div class='control-group'>
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
 
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <br/>
+    <div class='control-group'>
+      <%= f.label :url %>
+      <%= f.text_field :url %>
+    </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br/>
+    <div class='control-group'>
+      <%= f.label :description %>
+      <%= f.text_area :description, rows: 5 %>
+    </div>
 
-  <%= f.submit class: 'btn btn-primary' %>
-<% end %>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
