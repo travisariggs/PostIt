@@ -3,27 +3,27 @@
     <%= link_to "Postit!", root_path, :class => 'brand' %>
   </li>
 </ul>
+
+<div class='btn-group nav_item'>
+  <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+    Categories <span class='caret'></span>
+  <% end %>
+  <ul class='dropdown-menu'>
+    <% Category.all.each do |category| %>
+      <li>
+        <%= link_to category.name, category_path(category) %>
+      </li>
+    <% end %>
+    <li class='divider'></li>
+    <li>
+      <%= link_to(new_category_path) do %>
+        <i class='icon-plus'></i>
+        New Category
+      <% end %>
+    </li>
+  </ul>
+</div>
+
 <div class='nav_item'>
   <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
 </div>
-<div class='nav_item'>
-  <%= link_to 'New Category', new_category_path, class: 'btn btn-small' %>
-</div>
-<div class='nav_item'>
-  <div class='dropdown'>
-    <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu1' data-toggle='dropdown'>Categories
-      <span class='caret'></span>
-    </button>
-    <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
-      <% Category.all.each do |c| %>
-        <li role='presentation'>
-          <a role='menuitem' tabindex='-1' href='#'>
-            <%= c.name %>
-          </a>
-        </li>
-      <% end %>
-      <li role='presentation' class='divider'></li>
-      <li role='presentation'><%= link_to 'New Category', new_category_path, role: 'menuitem' %></li>
-    </ul>
-  </div>
-</div>  
