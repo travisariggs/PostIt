@@ -9,3 +9,21 @@
 <div class='nav_item'>
   <%= link_to 'New Category', new_category_path, class: 'btn btn-small' %>
 </div>
+<div class='nav_item'>
+  <div class='dropdown'>
+    <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu1' data-toggle='dropdown'>Categories
+      <span class='caret'></span>
+    </button>
+    <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
+      <% Category.all.each do |c| %>
+        <li role='presentation'>
+          <a role='menuitem' tabindex='-1' href='#'>
+            <%= c.name %>
+          </a>
+        </li>
+      <% end %>
+      <li role='presentation' class='divider'></li>
+      <li role='presentation'><%= link_to 'New Category', new_category_path, role: 'menuitem' %></li>
+    </ul>
+  </div>
+</div>  
