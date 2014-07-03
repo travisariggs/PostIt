@@ -5,4 +5,6 @@ PostitTemplate::Application.routes.draw do
     resources :comments, only: [:new, :create, :edit, :update]
   end
 
+  resources :categories, except: :destroy
+
 end
