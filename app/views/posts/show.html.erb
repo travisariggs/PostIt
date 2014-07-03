@@ -12,6 +12,20 @@
 </p>
 <hr/>
 
+<%= render 'shared/errors', object: @comment %>
+
+<h5>Create a comment:</h5>
+<div class='well' />
+  <%= form_for [@post, @comment] do |f| %>
+    <div class='control-group' %>
+      <%= f.label :body %>
+      <%= f.text_area :body, cols: 50, rows: 3 %>
+    </div>
+
+    <%= f.submit('Post Comment', class: 'btn btn-primary') %>
+  <% end %>
+</div>
+
 <h4>Comments:</h4>
 
 <% @post.comments.each do |comment| %>
