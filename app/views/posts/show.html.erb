@@ -12,14 +12,12 @@
 </p>
 <hr/>
 
-<%= render 'shared/errors', object: @comment %>
-
-<h5>Create a comment:</h5>
 <div class='well' />
   <%= form_for [@post, @comment] do |f| %>
+    <%= render 'shared/errors', object: @comment %>
     <div class='control-group' %>
-      <%= f.label :body %>
-      <%= f.text_area :body, cols: 50, rows: 3 %>
+      <%= f.label :body, 'Leave a comment:' %>
+      <%= f.text_area :body, rows: 3, class: 'span4' %>
     </div>
 
     <%= f.submit('Post Comment', class: 'btn btn-primary') %>
