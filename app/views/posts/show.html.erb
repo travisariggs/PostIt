@@ -12,6 +12,42 @@
 </p>
 <hr/>
 
+<div class='well'>
+  <%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= text_field_tag(:q) %>
+    <%= submit_tag("Search") %>
+
+    <div>
+      <%= check_box_tag(:pet_dog) %>
+      <%= label_tag(:pet_dog, "I own a dog") %>
+      <%= check_box_tag(:pet_cat) %>
+      <%= label_tag(:pet_cat, "I own a cat") %>
+    </div>
+
+    <div>
+      <%= radio_button_tag(:age, "child") %>
+      <%= label_tag(:age_child, "I am younger than 21") %>
+      <%= radio_button_tag(:age, "adult") %>
+      <%= label_tag(:age_adult, "I'm over 21") %>
+    </div>
+
+    <div>
+      <%= datetime_field(:user, :meeting_time) %>
+      <%= color_field(:user, :favorite_color) %>
+      <%= time_field(:task, :started_at) %>
+      <%= number_field(:product, :price, in: 1.0..20.0, step: 0.5) %>
+      <%= range_field(:product, :discount, in: 1..100) %>
+
+      <%= password_field_tag(:password) %>
+      <%= hidden_field_tag(:parent_id, "5") %>
+      <%= telephone_field(:user, :phone) %>
+    </div>
+
+  <% end %>
+</div>
+
+
 <div class='well' />
   <%= form_for [@post, @comment] do |f| %>
     <%= render 'shared/errors', object: @comment %>
