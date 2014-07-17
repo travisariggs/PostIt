@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    binding.pry
     @post = Post.new(post_params)
     @post.creator = User.first # TODO: change once we have authentication
 
@@ -42,7 +41,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :url, :description, :category_ids => [])
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
   end
 
   def find_post
