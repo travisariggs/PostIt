@@ -32,7 +32,7 @@
       <p>"<%= comment.body %>"</p>
       <p>
         <span class='quiet'>by</span> <%= comment.user.username %>
-        <small>at <%= comment.created_at %></small>
+        <small>on <%= format_time(comment.created_at) %></small>
       </p>
     </div>
   </div>
