@@ -5,9 +5,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
 
-    # Hard code the first user as the commentor for now...
-    @user = User.first
-    @comment.user = @user
+    @comment.user = @current_user
 
     if @comment.save
       flash[:notice] = 'Comment created successfully'
