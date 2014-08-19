@@ -22,7 +22,6 @@
         <%= f.label :body, 'Leave a comment:' %>
         <%= f.text_area :body, rows: 3, class: 'span4' %>
       </div>
-
       <%= f.submit('Post Comment', class: 'btn btn-primary') %>
     <% end %>
   </div>
@@ -31,13 +30,16 @@
 <h4>Comments:</h4>
 
 <% @post.comments.each do |comment| %>
-  <div class='row'>
-    <div class='span8 well'>
-      <p>"<%= comment.body %>"</p>
-      <p>
-        <span class='quiet'>by</span> <%= comment.user.username %>
-        <small>on <%= format_time(comment.created_at) %></small>
-      </p>
+  <% begin %>
+    <div class='row'>
+      <div class='span8 well'>
+        <p>"<%= comment.body %>"</p>
+        <p>
+          <span class='quiet'>by</span> <%= comment.user.username %>
+          <small>on <%= format_time(comment.created_at) %></small>
+        </p>
+      </div>
     </div>
-  </div>
+  <% rescue %>
+  <% end %>
 <% end %>
