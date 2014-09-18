@@ -9,6 +9,8 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:notice] = 'You have registered successfully'
+      # Log the user in
+      session[:user_id] = @user.id
       redirect_to posts_path
     else
       render :new
