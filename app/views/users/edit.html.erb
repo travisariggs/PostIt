@@ -14,6 +14,11 @@
       <%= u.password_field :password %>
     </div>
 
+    <div class='control-group'>
+      <%= u.label :timezone_string %>
+      <%= u.text_field :timezone_string %>
+    </div>
+
     <%= u.submit('Update', class: 'btn btn-primary') %>
   <% end %>
 </div>
