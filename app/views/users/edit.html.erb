@@ -2,18 +2,4 @@
 
 <%= render 'shared/errors', object: @user %>
 
-<div class='well'>
-  <%= form_for @user do |u| %>
-    <div class='control-group'>
-      <%= u.label :username %>
-      <%= u.text_field :username %>
-    </div>
-
-    <div class='control-group'>
-      <%= u.label :password %>
-      <%= u.password_field :password %>
-    </div>
-
-    <%= u.submit('Update', class: 'btn btn-primary') %>
-  <% end %>
-</div>
+<%= render 'form' %>
