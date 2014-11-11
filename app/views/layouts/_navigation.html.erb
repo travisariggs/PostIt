@@ -37,6 +37,23 @@
     <%= link_to 'Log out', logout_path, class: 'btn btn-default btn-small' %>
   </div>
 
+  <div class='btn-group nav_item'>
+    <%= link_to '#', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+      <%= current_user.username %> <span class='caret'></span>
+    <% end %>
+    <ul class='dropdown-menu'>
+      <li>
+        <%= link_to 'Show profile', user_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'Edit profile', edit_user_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'Log out', logout_path %>
+      </li>
+    </ul>
+  </div>
+
 <% else %>
 
   <div class='nav_item navbar-right'>
