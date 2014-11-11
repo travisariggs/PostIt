@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :set_user, only: [:show, :edit, :update]
+
   def show
     @user = current_user
   end
@@ -22,11 +24,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
   end
 
   def update
-    @user = current_user
 
     if @user.save
       flash[:notice] = 'Your profile was updated successfully'
@@ -40,6 +40,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :password)
+  end
+
+  def set_user
+    @user = current_user
   end
 
 end
