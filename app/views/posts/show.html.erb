@@ -30,16 +30,5 @@
 <h4>Comments:</h4>
 
 <% @post.comments.each do |comment| %>
-  <% begin %>
-    <div class='row'>
-      <div class='span8 well'>
-        <p>"<%= comment.body %>"</p>
-        <p>
-          <span class='quiet'>by</span> <%= comment.user.username %>
-          <small>on <%= format_time(comment.created_at) %></small>
-        </p>
-      </div>
-    </div>
-  <% rescue %>
-  <% end %>
+  <%= render 'comments/comment', comment: comment %>
 <% end %>

@@ -15,6 +15,6 @@
       <%= u.text_field :timezone_string %>
     </div>
 
-    <%= u.submit('Update', class: 'btn btn-primary') %>
+    <%= u.submit((@user.new_record? ? 'Register' : 'Update'), class: 'btn btn-primary') %>
   <% end %>
 </div>
