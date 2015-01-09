@@ -21,7 +21,12 @@ PostitTemplate::Application.routes.draw do
     #   get 'archives'  # /posts/archives
     # end
 
-    resources :comments, only: [:create]
+    resources :comments, only: [:create] do
+      member do
+        post :vote  # /posts/3/comments/2/vote
+      end
+    end
+
   end
 
   resources :categories, only: [:new, :create, :show]
