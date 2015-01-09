@@ -1,6 +1,22 @@
 <% show_post ||= false %>
 
 <% begin %>
+<div class='row'>
+  <div class='span0 well text-center'>
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+        <i class='icon-chevron-up'></i>
+      <% end %>
+      <br/>
+    <% end %>
+    <%= "#{comment.total_votes} votes" %>
+    <% if logged_in? %>
+      <br/>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+        <i class='icon-chevron-down'></i>
+      <% end %>
+    <% end %>
+  </div>
   <div class='span8 well'>
     <em>"<%= comment.body %>"</em>
     <% if show_post %>
@@ -10,5 +26,6 @@
     <span class='quiet'>by</span> <%= link_to(comment.user.username, user_path(comment.user)) %>
     <small>on <%= format_time(comment.created_at) %></small>
   </div>
+</div>
 <% rescue %>
 <% end %>

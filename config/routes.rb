@@ -7,10 +7,26 @@ PostitTemplate::Application.routes.draw do
 
   get '/register', to: 'users#new', as: 'register'
 
+  #resources :votes, only: [:create]
+
   resources :users, only: [:show, :create, :edit, :update]
 
   resources :posts, except: :destroy do
-    resources :comments, only: [:create]
+    member do
+      post :vote  # /posts/3/vote
+    end
+
+    # Use 'collection' for routes that don't pertain to a specific post
+    # collection do
+    #   get 'archives'  # /posts/archives
+    # end
+
+    resources :comments, only: [:create] do
+      member do
+        post :vote  # /posts/3/comments/2/vote
+      end
+    end
+
   end
 
   resources :categories, only: [:new, :create, :show]
