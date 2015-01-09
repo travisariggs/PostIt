@@ -6,7 +6,7 @@
       <% end %>
       <br/>
     <% end %>
-    <%= post.total_votes %>
+    <%= "#{post.total_votes} votes" %>
     <% if logged_in? %>
       <br/>
       <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
