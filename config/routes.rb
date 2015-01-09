@@ -13,8 +13,13 @@ PostitTemplate::Application.routes.draw do
 
   resources :posts, except: :destroy do
     member do
-      post :vote
+      post :vote  # /posts/3/vote
     end
+
+    # Use 'collection' for routes that don't pertain to a specific post
+    # collection do
+    #   get 'archives'  # /posts/archives
+    # end
 
     resources :comments, only: [:create]
   end
