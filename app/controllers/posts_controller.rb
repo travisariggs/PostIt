@@ -17,6 +17,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.creator = current_user
+    @post.slug = @post.gen_slug
 
     if @post.save
       flash[:notice] = 'Post successfully created'
@@ -74,7 +75,7 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
 
   def vote_params
