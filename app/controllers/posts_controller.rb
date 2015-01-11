@@ -28,6 +28,12 @@ class PostsController < ApplicationController
   end
 
   def edit
+    if @post.creator != current_user
+      flash[:error] = 'You are not allowed to do that.'
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
   end
 
   def update
