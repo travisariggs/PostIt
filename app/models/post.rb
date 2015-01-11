@@ -13,6 +13,26 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :description, presence: true
 
+  def to_param
+    self.slug
+  end
+
+  def slug
+    slug = self.title.tr(' ', '-')
+    slug = self.clean_string(slug.downcase)
+    return slug
+  end
+
+  def clean_string(s)
+    bad = ['!','@','#','$','%','^','&','*','(',')','+','=',
+           '[',']','{','}','|','/','<','>','?',',','.','~',
+           '`']
+    bad.each do |b|
+      s.tr!(b,'')
+    end
+    s
+  end
+
   def total_votes
     up_votes - down_votes
   end
