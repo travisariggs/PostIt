@@ -14,10 +14,10 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
 
   def to_param
-    self.slug
+    self.gen_slug
   end
 
-  def slug
+  def gen_slug
     slug = self.title.tr(' ', '-')
     slug = self.clean_string(slug.downcase)
     return slug
