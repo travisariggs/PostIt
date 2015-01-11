@@ -1,0 +1,5 @@
+<% if @vote.valid? %>
+  $("#post_<%= @post.id %>_vote_total").html('<%= @post.total_votes %> votes');
+<% else %>
+  alert('Your vote did not count.');
+<% end %>
