@@ -6,7 +6,7 @@
       <% end %>
       <br/>
     <% end %>
-    <div id='post_<%= post.id %>_vote_total'><%= post.total_votes %> votes</div>
+    <div id='post_<%= post.slug %>_votes'><%= post.total_votes %> votes</div>
     <% if logged_in? %>
       <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
         <i class='icon-chevron-down'></i>
