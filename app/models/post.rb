@@ -13,14 +13,15 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :description, presence: true
 
+  after_validation :generate_slug
+
   def to_param
-    self.gen_slug
+    self.slug
   end
 
-  def gen_slug
-    slug = self.title.tr(' ', '-')
-    slug = self.clean_string(slug.downcase)
-    return slug
+  def generate_slug
+    slug_str = self.title.gsub!(' ', '-').downcase
+    self.slug = self.clean_string(slug_str)
   end
 
   def clean_string(s)
@@ -30,7 +31,8 @@ class Post < ActiveRecord::Base
     bad.each do |b|
       s.tr!(b,'')
     end
-    s
+
+    return s
   end
 
   def total_votes

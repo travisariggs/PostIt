@@ -17,7 +17,6 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.creator = current_user
-    @post.slug = @post.gen_slug
 
     if @post.save
       flash[:notice] = 'Post successfully created'
