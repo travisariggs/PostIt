@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  include Voteable
+
   # Simpler relationship declaration uses the standard naming
   #  conventions to relate things together
   #belongs_to :user
@@ -7,7 +9,6 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :post_categories
   has_many :categories, through: :post_categories
-  has_many :votes, as: :voteable
 
   validates :title, presence: true, length: {minimum: 5}
   validates :url, presence: true, uniqueness: true
@@ -60,18 +61,6 @@ class Post < ActiveRecord::Base
     # If we've reached here, we either found the slug for this object or
     #  we got a nil from searching for a slug name (meaning that it's unique)
     return unique_slug
-  end
-
-  def total_votes
-    up_votes - down_votes
-  end
-
-  def up_votes
-    self.votes.where(vote: true).size
-  end
-
-  def down_votes
-    self.votes.where(vote: false).size
   end
 
 end
