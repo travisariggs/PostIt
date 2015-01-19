@@ -7,8 +7,10 @@ class Category < ActiveRecord::Base
   validates :name, presence: true
 
   # Required for Sluggable Module
-  def slug_value
-    self.name
-  end
+  sluggable_column :name
+
+  # def slug_value
+  #   self.name
+  # end
 
 end

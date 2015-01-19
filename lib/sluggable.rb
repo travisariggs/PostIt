@@ -3,6 +3,7 @@ module Sluggable
 
   included do
     before_save :generate_slug!
+    class_attribute :slug_column
   end
 
   def to_param
@@ -10,7 +11,8 @@ module Sluggable
   end
 
   def generate_slug!
-    slug_str = self.slug_value
+    #slug_str = self.slug_value
+    slug_str = self.send(self.class.slug_column.to_sym)
     # Remove leading or trailing whitespace
     slug_str = slug_str.strip
     # Make everything lower case
@@ -46,6 +48,12 @@ module Sluggable
     # If we've reached here, we either found the slug for this object or
     #  we got a nil from searching for a slug name (meaning that it's unique)
     return unique_slug
+  end
+
+  module ClassMethods
+    def sluggable_column(col_name)
+      self.slug_column = col_name
+    end
   end
 
 end

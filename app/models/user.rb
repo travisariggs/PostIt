@@ -11,8 +11,10 @@ class User < ActiveRecord::Base
   validates :password, on: :create, presence: true, length: {minimum: 4}
 
   # Required for Sluggable Module
-  def slug_value
-    self.username
-  end
+  sluggable_column :username
+
+  # def slug_value
+  #   self.username
+  # end
 
 end

@@ -16,8 +16,10 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
 
   # Required for Sluggable Module
-  def slug_value
-    self.title
-  end
+  sluggable_column :title
+
+  # def slug_value
+  #   self.title
+  # end
 
 end
