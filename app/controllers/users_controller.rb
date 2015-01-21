@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    # Set the user role to 'user'
+    @user.role = 'user'
 
     if @user.save
       flash[:notice] = 'You have registered successfully'
