@@ -17,14 +17,6 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
-  def admin?
-    if logged_in?
-      current_user.role == 'admin'
-    else
-      false
-    end
-  end
-
   def require_user
     if not logged_in?
       flash[:error] = 'You have to be logged in to do that!'
@@ -33,10 +25,12 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    if not admin?
-      flash[:error] = 'Only the boss can do that...'
-      redirect_to root_path
-    end
+    access_denied unless logged_in? and current_user.admin?
+  end
+
+  def access_denied
+    flash[:error] = 'Only the boss can do that...'
+    redirect_to root_path
   end
 
 end
