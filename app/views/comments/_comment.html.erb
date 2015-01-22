@@ -25,11 +25,7 @@
     <% end %>
     <br/>
     <span class='quiet'>by</span> <%= link_to(comment.user.username, user_path(comment.user)) %>
-    <% if logged_in? %>
-      <small> on <%= format_time(comment.created_at, current_user.timezone_string) %></small>
-    <% else %>
-      <small> on <%= format_time(comment.created_at) %></small>
-    <% end %>
+    <small> on <%= format_time(comment.created_at) %></small>
   </div>
 </div>
 <% rescue %>

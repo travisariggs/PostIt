@@ -8,10 +8,15 @@ module ApplicationHelper
     end
   end
 
-  def format_time(timestamp, timezone=Time.zone.name)
+  def format_time(timestamp)
     # Example Format:  Tuesday, January 10, 2014 at 8:42 pm
     format_str = '%A, %B %-d, %Y at %-l:%M %P'
-    timestamp.in_time_zone(timezone).strftime(format_str)
+
+    if logged_in?
+      timestamp = timestamp.in_time_zone(current_user.timezone_string)
+    end
+
+    timestamp.strftime(format_str)
   end
 
 end
