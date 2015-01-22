@@ -12,7 +12,8 @@
 
     <div class='control-group'>
       <%= u.label :timezone_string %>
-      <%= u.text_field :timezone_string %>
+      <%= u.time_zone_select(:timezone_string, ActiveSupport::TimeZone.us_zones,
+            default: Time.zone.name) %>
     </div>
 
     <%= u.submit((@user.new_record? ? 'Register' : 'Update'), class: 'btn btn-primary') %>

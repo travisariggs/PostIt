@@ -25,7 +25,7 @@
     <% end %>
     <br/>
     <span class='quiet'>by</span> <%= link_to(comment.user.username, user_path(comment.user)) %>
-    <small>on <%= format_time(comment.created_at) %></small>
+    <small> on <%= format_time(comment.created_at) %></small>
   </div>
 </div>
 <% rescue %>
