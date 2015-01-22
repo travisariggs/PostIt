@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
+  before_action :require_creator_or_above, only: [:edit, :update]
 
   def index
     @posts = Post.all.sort_by{|x| x.total_votes}.reverse
@@ -28,12 +29,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    unless @post.creator == current_user or current_user.admin?
-      flash[:error] = 'You are not allowed to do that.'
-      redirect_to post_path(@post)
-    else
-      render :edit
-    end
   end
 
   def update
@@ -79,6 +74,11 @@ class PostsController < ApplicationController
 
   def vote_params
     params.require(:post)
+  end
+
+  def require_creator_or_above
+    access_denied('You cannot edit that.') unless @post.creator == current_user or
+      current_user.admin?
   end
 
 end
