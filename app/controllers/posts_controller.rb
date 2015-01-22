@@ -5,10 +5,22 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all.sort_by{|x| x.total_votes}.reverse
+    respond_to do |format|
+      format.html {}
+      format.json { render json: @posts }
+      format.xml  { render xml:  @posts }
+    end
   end
 
   def show
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html {}
+      format.json { render json: sanitize_for_external_api(@post) }
+      format.xml  { render xml: sanitize_for_external_api(@post)  }
+    end
+
   end
 
   def new
@@ -79,6 +91,12 @@ class PostsController < ApplicationController
   def require_creator_or_above
     access_denied('You cannot edit that.') unless @post.creator == current_user or
       current_user.admin?
+  end
+
+  def sanitize_for_external_api(post)
+    post_attrs = post.attributes
+    post_attrs["username"] = post.creator.username
+    sanitized_attrs = post_attrs.select{ |key, val| not ['id', 'user_id'].include?(key) }
   end
 
 end
