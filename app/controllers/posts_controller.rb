@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    if @post.creator != current_user
+    unless @post.creator == current_user or current_user.admin?
       flash[:error] = 'You are not allowed to do that.'
       redirect_to post_path(@post)
     else
