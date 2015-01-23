@@ -1,0 +1,12 @@
+<%= render 'shared/content_title', title: 'Please enter your pin' %>
+
+<div>A pin number has been sent to your phone. Please enter it in the field below.</div>
+<div class='well'>
+  <%= form_tag '/pin' do %>
+    <div class='control-group'>
+      <%= label_tag "Pin Number" %>
+      <%= text_field_tag :pin %>
+    </div>
+    <%= submit_tag 'Login', class: 'btn btn-success' %>
+  <% end %>
+</div>
