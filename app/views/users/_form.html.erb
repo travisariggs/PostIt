@@ -11,6 +11,11 @@
     </div>
 
     <div class='control-group'>
+      <%= u.label :phone %>
+      <%= u.text_field :phone %>
+    </div>
+
+    <div class='control-group'>
       <%= u.label :timezone_string %>
       <%= u.time_zone_select(:timezone_string, ActiveSupport::TimeZone.us_zones,
             default: Time.zone.name) %>
