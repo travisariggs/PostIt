@@ -1,9 +1,11 @@
 PostitTemplate::Application.routes.draw do
   root to: 'posts#index'
 
-  get '/login', to: 'sessions#new', as: 'login'
+  get  '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy', as: 'logout'
+  get  '/logout', to: 'sessions#destroy', as: 'logout'
+  get  '/pin', to: 'sessions#pin'
+  post '/pin', to: 'sessions#pin'
 
   get '/register', to: 'users#new', as: 'register'
 
