@@ -17,6 +17,20 @@ class User < ActiveRecord::Base
   #   self.username
   # end
 
+  def generate_pin!
+    self.pin = rand(10**5..(10**6-1))
+    self.save
+  end
+
+  def remove_pin!
+    self.pin = nil
+    self.save
+  end
+
+  def phone?
+    self.phone != nil
+  end
+
   def admin?
     self.role == 'admin'
   end
